@@ -53,6 +53,36 @@ import (
 	rating float64
 	GameDetails // here we will left it like this.
  }
+
+ type rectangle struct {
+	width float64
+	height float64
+ }
+
+
+// here in this method the struct is passed by value,
+// so we cannot modify the values of width and height, for that
+// we will use the  pointer.
+ func (r rectangle) Area() float64 {
+	return r.width * r.height
+ }
+
+ // here is how we will use the pointer.
+ // here we can change the values of the width and height.
+
+ func (r *rectangle) Scale(factor float64) {
+	r.width = r.width * factor
+	r.height = r.height * factor
+ }
+
+ // in the above method we are modifying the values of the 
+ // height and width of the rectangle by multiplying by a factor.
+
+
+
+
+
+
  
 
  // now lets initialize these.
@@ -121,6 +151,19 @@ func main(){
 	}
 
 	fmt.Println("this is the game, with promotion embedding ", game)
+
+
+	rec := rectangle{
+		width: 4,
+		height: 5,
+	}
+
+	fmt.Println("Area is : ", rec.Area())
+
+	rec.Scale(2)
+
+	fmt.Println("New Area with modified scale of rectangle:  ", rec.Area())
+
 
 
 }
